@@ -17,8 +17,8 @@ services:
     ports:
       - 8080:80
     environment:
-      - PGADMIN_DEFAULT_EMAIL=admin@example.com
-      - PGADMIN_DEFAULT_PASSWORD=admin123
+      - PGADMIN_DEFAULT_EMAIL=walidteh05@gmail.com
+      - PGADMIN_DEFAULT_PASSWORD=123377Az@
     depends_on:
       - db
 
