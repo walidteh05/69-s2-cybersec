@@ -3,17 +3,19 @@ services:
     image: postgres:16-alpine
     container_name: 69-s2-db
     ports:
-      - 5432:5432
+      - "54321:5432"
     environment:
-      - POSTGRES_PASSWORD=123377Az@
-      - POSTGRES_USER=walid
-      - POSTGRES_DB=walid
+      POSTGRES_USER: walid
+      POSTGRES_PASSWORD: 123377Az@
+      POSTGRES_DB: walid
 
-    pgadmin:
-      image: dpage/pgadmin4:latest
-      container_name: 69-s2-admin
-      ports:
-        - 8080:80
-      environment:
-        - PGADMIN_DEFAULT_PASSWORD=123377Az@
-        - PGADMIN_DEFAULT_EMAIL=walidteh05@gmail.com
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: 69-s2-pgadmin
+    ports:
+      - "8080:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: walidteh05@gmail.com
+      PGADMIN_DEFAULT_PASSWORD: 123377Az@
+    depends_on:
+      - db
