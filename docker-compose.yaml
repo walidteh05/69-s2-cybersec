@@ -17,5 +17,3 @@ services:
     environment:
       - PGADMIN_DEFAULT_EMAIL=walidteh05@gmail.com
       - PGADMIN_DEFAULT_PASSWORD=123377Az@
-    depends_on:
-      - db
