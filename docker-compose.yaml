@@ -5,9 +5,9 @@ services:
     ports:
       - 54321:5432
     environment:
-      - POSTGRES_PASSWORD=123377Az@
-      - POSTGRES_USER=walid
-      - POSTGRES_DB=walid
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_DB=${POSTGRES_DB}
 
   admin:
     image: dpage/pgadmin4:latest
@@ -17,3 +17,4 @@ services:
     environment:
       - PGADMIN_DEFAULT_EMAIL=walidteh05@gmail.com
       - PGADMIN_DEFAULT_PASSWORD=123377Az@
+
