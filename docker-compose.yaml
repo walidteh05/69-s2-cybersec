@@ -23,3 +23,18 @@ services:
       - db
     volumes:
       - ./data-pgadmin:/var/lib/pgadmin
+
+  app:
+    image: prawee/strapi
+    container_name: 69-s2-app
+    ports:
+      - "9092:1337"
+    environment:
+      - DATABASE_CLIENT=${DATABASE_CLIENT}
+      - DATABASE_NAME=${DATABASE_NAME}
+      - DATABASE_HOST=${DATABASE_HOST}
+      - DATABASE_PORT=${DATABASE_PORT}
+      - DATABASE_USERNAME=${DATABASE_USERNAME}
+      - DATABASE_PASSWORD=${DATABASE_PASSWORD}
+    volumes:
+      - ./data-app:/srv/app
