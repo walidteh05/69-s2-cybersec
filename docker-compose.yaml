@@ -36,9 +36,4 @@ services:
       - DATABASE_PASSWORD=${DATABASE_PASSWORD}
     volumes:
       - ./data-app:/srv/app
-
-volumes:
-  data-postgres:
-  data-pgadmin:
-  data-app:
   
