@@ -5,7 +5,39 @@ POST http://localhost:9092/admin/login
 Content-Type: application/json
 
 {
-    "email": "",
-    "password": "",
+    "email": "walidteh05@gmail.com",
+    "password": "123377Az@",
     "rememberMe": false
 }
+
+
+###
+# Register
+POST http://localhost:9092/admin/register
+Content-Type: application/json
+
+{
+    "email": "walidteh05@gmail.com",
+    "password": "123377AZ@",
+    "firstName": "walid",
+    "lastName": "Teh"
+}
+
+
+
+
+###
+# Forgot Password
+POST http://localhost:9092/admin/forgot-password
+Content-Type: application/json
+
+{
+    "email": "walidteh05@gmail.com"
+}
+
+
+
+###
+# Profile
+GET http://localhost:9092/admin/users/me
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzg2OTYyMjgyLCJleHAiOjE3ODk1NTQyODJ9.8LACtGCavVGNzo0e1Mg6Y_ZK7L6S0O6sM0NiG6JzK6A
