@@ -1,0 +1,16 @@
+# REST
+
+# Login
+POST http://localhost:9092/admin/login
+Content-Type: application/json
+
+{
+    "email": "walidteh05@gmail.com",
+    "password": "123377Az@",
+    "rememberMe": false
+}
+
+
+# Register
+## Forgot Password
+# Profile
