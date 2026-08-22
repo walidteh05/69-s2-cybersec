@@ -10,8 +10,7 @@ Content-Type: application/json
     "rememberMe": false
 }
 
-###
-# Register
+### Register
 POST http://localhost:9092/admin/register-admin
 Content-Type: application/json
 
@@ -22,8 +21,7 @@ Content-Type: application/json
     "password": ""
 }
 
-###
-# Forgot Password
+### Forgot Password
 POST http://localhost:9092/admin/forgot-password
 Content-Type: application/json
 
@@ -31,7 +29,6 @@ Content-Type: application/json
     "email": ""
 }
 
-###
-# Profile
+### Profile
 GET http://localhost:9092/admin/users/me
 Authorization: Bearer {YOUR_JWT_TOKEN}
