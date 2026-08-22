@@ -34,4 +34,4 @@ Content-Type: application/json
 ###
 # Profile
 GET http://localhost:9092/admin/users/me
-Authorization: Bearer YOUR_JWT_TOKEN
+Authorization: Bearer {YOUR_JWT_TOKEN}
