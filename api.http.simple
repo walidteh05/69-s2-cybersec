@@ -32,3 +32,35 @@ Content-Type: application/json
 ### Profile
 GET http://localhost:9092/admin/users/me
 Authorization: Bearer {YOUR_JWT_TOKEN}
+
+## 2.User
+### 2.1 Login
+POST http://localhost:9092/api/auth/local
+Content-Type: application/json
+
+{
+    "identifier": "",
+    "password": ""
+}
+
+### 2.2 Register
+POST http://localhost:9092/api/auth/local/register
+Content-Type: application/json
+
+{
+    "username": "",
+    "email": "",
+    "password": ""
+}
+
+### 2.3 Forgot Password
+POST http://localhost:9092/api/auth/forgot-password
+Content-Type: application/json
+
+{
+    "email": ""
+}
+
+### 2.4 Profile
+GET http://localhost:9092/api/users/me
+Authorization: Bearer {YOUR_JWT_TOKEN}
