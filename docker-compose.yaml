@@ -23,6 +23,7 @@ services:
       - ./data-pgadmin:/var/lib/pgadmin
 
   app:
+    build: .
     image: prawee/strapi
     container_name: 69-s2-app
     ports:
