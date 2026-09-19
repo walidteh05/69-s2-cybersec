@@ -35,6 +35,7 @@ services:
       - DATABASE_PORT=${DATABASE_PORT}
       - DATABASE_USERNAME=${DATABASE_USERNAME}
       - DATABASE_PASSWORD=${DATABASE_PASSWORD}
+      - RESET_TOKEN_DEV_LOG=${RESET_TOKEN_DEV_LOG}
     volumes:
       - ./data-app:/srv/app
   
