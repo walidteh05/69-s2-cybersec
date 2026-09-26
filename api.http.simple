@@ -3,7 +3,10 @@
 ## Variables
 @admin_email = {{$dotenv ADMIN_EMAIL}}
 @admin_password = {{$dotenv ADMIN_PASSWORD}}
-@forgot_admin_email = {{$dotenv FORGOT_ADMIN_EMAIL}}
+@forgot_admin_email = {{$dotenv FORGOR_ADMIN_EMAIL}}
+@new_admin_password = {{$dotenv NEW_ADMIN_PASSWORD}}
+@token_admin_profile = {{$dotenv TOKEN_ADMIN_PROFILE}}
+@forgot_admin_token = {{$dotenv TOKEN_FORGOT_ADMIN}}
 
 @signUp_user_username = {{$dotenv SIGNUP_USER_USERNAME}}
 @signUp_user_email = {{$dotenv SIGNUP_USER_EMAIL}}
@@ -11,6 +14,23 @@
 @user_email = {{$dotenv USER_EMAIL}}
 @user_password = {{$dotenv USER_PASSWORD}}
 @forgot_user_email = {{$dotenv FORGOT_USER_EMAIL}}
+@new_user_password = {{$dotenv NEW_USER_PASSWORD}}
+@resetPasswordToken_User = {{$dotenv TOKEN_FORGOT_USER}}
+@token_user_profile = {{$dotenv TOKEN_USER_PROFILE}}
+
+@signUp_student_name = {{$dotenv SIGNUP_STUDENT_NAME}}
+@signUp_student_mobile = {{$dotenv SIGNUP_STUDENT_MOBILE}}
+@signUp_student_cardId = {{$dotenv SIGNUP_STUDENT_CARDID}}
+@update_student_id = {{$dotenv UPDATE_STUDENT_ID}}
+@update_student_name = {{$dotenv UPDATE_STUDENT_NAME}}
+@update_student_mobile = {{$dotenv UPDATE_STUDENT_MOBILE}}
+@update_student_cardId = {{$dotenv UPDATE_STUDENT_CARDID}}
+@signUp_subject_name = {{$dotenv SIGNUP_SUBJECT_NAME}}
+@update_subject_id = {{$dotenv UPDATE_SUBJECT_ID}}
+@update_subject_name = {{$dotenv UPDATE_SUBJECT_NAME}}
+@signUp_teacher_name = {{$dotenv SIGNUP_TEACHER_NAME}}
+@update_teacher_id = {{$dotenv UPDATE_TEACHER_ID}}
+@update_teacher_name = {{$dotenv UPDATE_TEACHER_NAME}}
 
 ## 1. Admin
 # 1.1Login (Admin)
@@ -34,6 +54,7 @@ Content-Type: application/json
     "password": "{{admin_password}}"
 }
 
+
 ### 1.3 Forgot Password
 POST http://localhost:9092/admin/forgot-password
 Content-Type: application/json
@@ -47,13 +68,14 @@ POST http://localhost:9092/admin/reset-password
 Content-Type: application/json
 
 {
-    "resetPasswordToken": "",
-    "password": "{{admin_password}}"
+    "resetPasswordToken": "{{forgot_admin_token}}",
+    "password": "{{new_admin_password}}"
 }
 
 ### 1.4 Profile
 GET http://localhost:9092/admin/users/me
-Authorization: Bearer {YOUR_JWT_TOKEN}
+Authorization: Bearer {{token_admin_profile}}
+
 
 ## 2.User
 ### 2.1 Login
@@ -64,6 +86,7 @@ Content-Type: application/json
     "identifier": "{{user_email}}",
     "password": "{{user_password}}"
 }
+
 
 ### 2.2 Register
 POST http://localhost:9092/api/auth/local/register
@@ -80,7 +103,7 @@ POST http://localhost:9092/api/auth/forgot-password
 Content-Type: application/json
 
 {
-    "email": "{{forgot_user_email}}"
+    "email": "{{user_email}}"
 }
 
 ### 2.3.1 Reset Password
@@ -88,11 +111,111 @@ POST http://localhost:9092/api/auth/reset-password
 Content-Type: application/json
 
 {
-    "code": "",
-    "password": "{{user_password}}",
-    "passwordConfirmation": "{{user_password}}"
+    "code": "{{resetPasswordToken_User}}",
+    "password": "{{new_user_password}}",
+    "passwordConfirmation": "{{new_user_password}}"
 }
 
 ### 2.4 Profile
 GET http://localhost:9092/api/users/me
-Authorization: Bearer {YOUR_JWT_TOKEN}
+Authorization: Bearer {{token_user_profile}}
+
+
+## 3.1 Students
+
+### 3.1.1 Create Student
+POST http://localhost:9092/api/students
+Authorization: Bearer {{token_user_profile}}
+Content-Type: application/json
+
+{
+    "data": {
+        "name": {{signUp_student_name}},
+        "mobile": {{signUp_student_mobile}},
+        "cardId": {{signUp_student_cardId}}
+    }
+}
+
+### 3.1.2 List Students
+GET http://localhost:9092/api/students
+Authorization: Bearer {{token_user_profile}}
+
+### 3.1.3 List with ID
+GET http://localhost:9092/api/students/{{signUp_student_id}}
+Authorization: Bearer {{token_user_profile}}
+
+### 3.1.4 Update Student
+PUT http://localhost:9092/api/students/{{2}}
+Authorization: Bearer {{token_user_profile}}
+Content-Type: application/json
+
+{
+    "data": {
+        "name": {{update_student_name}},
+        "mobile": {{update_student_mobile}},
+        "cardId": {{update_student_cardId}}
+    }
+}
+## 3.2 Subjects
+
+### 3.2.1 Create Subject
+POST http://localhost:9092/api/subjects
+Authorization: Bearer {{token_user_profile}}
+Content-Type: application/json
+
+{
+    "data": {
+        "name": {{signUp_subject_name}}
+    }
+}
+
+### 3.2.2 List Subjects
+GET http://localhost:9092/api/subjects
+Authorization: Bearer {{token_user_profile}}
+
+### 3.2.3 List with ID
+GET http://localhost:9092/api/subjects/2
+Authorization: Bearer {{token_user_profile}}
+
+### 3.2.4 Update Subject
+PUT http://localhost:9092/api/subjects/2
+Authorization: Bearer {{token_user_profile}}
+Content-Type: application/json
+
+{
+    "data": {
+        "name": {{update_subject_name}}
+    }
+}
+
+### 3.3 Teachers
+
+### 3.3.1 Create Teacher
+POST http://localhost:9092/api/teachers
+Authorization: Bearer {{token_user_profile}}
+Content-Type: application/json
+
+{
+    "data": {
+        "name": {{signUp_teacher_name}}
+    }
+}
+
+### 3.3.2 List Teachers
+GET http://localhost:9092/api/teachers
+Authorization: Bearer {{token_user_profile}}
+
+### 3.3.3 List with ID
+GET http://localhost:9092/api/teachers/2
+Authorization: Bearer {{token_user_profile}}
+
+### 3.3.4 Update Teacher
+PUT http://localhost:9092/api/teachers/2
+Authorization: Bearer {{token_user_profile}}
+Content-Type: application/json
+
+{
+    "data": {
+        "name": {{update_teacher_name}}
+    }
+}
